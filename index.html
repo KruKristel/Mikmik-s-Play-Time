@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vocabulary Fun</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;800&display=swap" rel="stylesheet">
+<style>
+:root{--c1:#7c4dff;--c2:#ffb703;--c3:#2ec4b6;--i1:#fff;--i2:#222;--i3:#222;--bg:#fffaf0;--fg:#2b2350;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--fg);font-family:"Baloo 2","Trebuchet MS",system-ui,sans-serif;background:radial-gradient(circle at 15% 0,#fff0b8,transparent 40%),radial-gradient(circle at 95% 25%,#d6f3ff,transparent 40%),var(--bg)}
+#app{max-width:560px;margin:0 auto;padding:46px 14px 40px}
+#mu{position:fixed;right:10px;top:10px;z-index:5;font-size:1.4rem;border:3px solid var(--c1);background:#fff;border-radius:50%;width:44px;height:44px;cursor:pointer}
+.hd{text-align:center}.hd img{max-height:56px}
+h1{margin:4px 0;font-size:1.8rem;color:var(--c1)}
+.cr{opacity:.7;margin:0 0 6px}
+.cats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.cat{font:inherit;font-weight:800;font-size:1.05rem;border:4px solid transparent;border-radius:20px;padding:10px;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:0 5px 0 rgba(0,0,0,.18)}
+.cat span{font-size:1.8rem}
+.s0{background:var(--c1);color:var(--i1)}.s1{background:var(--c2);color:var(--i2)}.s2{background:var(--c3);color:var(--i3)}
+.cat.on{border-color:#fff;outline:4px solid var(--fg);transform:scale(1.03)}
+.modes{display:grid;gap:10px;margin-top:12px}
+.btn{font:inherit;font-weight:800;font-size:1.15rem;border:0;border-radius:18px;padding:12px 16px;cursor:pointer;background:var(--c1);color:var(--i1);box-shadow:0 5px 0 rgba(0,0,0,.2)}
+.btn:active{transform:translateY(3px)}
+.btn.alt{background:#fff;color:var(--fg);border:3px solid var(--c1)}
+.btn.sm{padding:6px 12px;font-size:1rem}
+.card{background:#fff;border:4px solid var(--c2);border-radius:28px;padding:16px;margin:12px 0;text-align:center;box-shadow:0 6px 0 rgba(0,0,0,.08)}
+.emo{font-size:5.5rem;line-height:1.1}
+.card .emo{font-size:7.5rem}
+.card img{max-width:100%;max-height:220px;border-radius:18px}
+.wd{font-size:2.5rem;font-weight:800;color:var(--c1)}
+.ip{font-size:1.4rem;opacity:.8}
+.q{font-size:1.2rem;font-weight:800;margin:4px 0 10px}
+.sent{font-size:1.8rem;font-weight:800}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pic{background:#fff;border:4px solid var(--c3);border-radius:22px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:6px;overflow:hidden}
+.pic img{width:100%;height:100%;object-fit:cover;border-radius:14px}
+.pic:disabled{opacity:.4}
+.top{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:1.1rem}
+.pg{height:10px;background:#0001;border-radius:9px;overflow:hidden;margin:8px 0}.pg i{display:block;height:100%;background:var(--c2)}
+.ltr{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin:12px 0}
+.ltr b{min-width:2.3rem;height:3.2rem;display:flex;align-items:center;justify-content:center;font-size:2.1rem;border-bottom:4px solid var(--c1);color:var(--c1)}
+.ltr b.bx{background:#fff3c4;border:3px dashed var(--c2);border-radius:10px}
+.ltr b.cur{border-color:var(--c1)}.ltr i{width:1rem}
+.keys{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.key{font:inherit;font-size:2.2rem;font-weight:800;border:0;border-radius:18px;padding:10px;cursor:pointer;background:var(--c3);color:var(--i3);box-shadow:0 5px 0 rgba(0,0,0,.2);text-transform:lowercase}
+.key:disabled{opacity:.3}
+#m{min-height:2.4rem;text-align:center;font-size:1.5rem;font-weight:800;margin-top:12px}
+.nav{display:flex;justify-content:space-between;gap:10px}
+.shake{animation:sh .35s}@keyframes sh{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.pulse{animation:pl 1s infinite}@keyframes pl{50%{transform:scale(1.06)}}
+.stars{font-size:3.2rem}
+.row{display:grid;grid-template-columns:64px 1fr;gap:8px;background:#fff;border:2px solid #0002;border-radius:14px;padding:8px;margin:8px 0}
+.th{width:64px;height:64px;border-radius:12px;border:2px dashed var(--c1);display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer}
+.th .emo{font-size:2.2rem}.th img{width:100%;height:100%;object-fit:cover}
+.f{display:flex;gap:6px;flex-wrap:wrap;margin:3px 0}
+input[type=text],select{font:inherit;padding:6px 8px;border:2px solid #0003;border-radius:10px;min-width:0;flex:1;background:#fff;color:var(--fg)}
+input[type=color]{width:56px;height:40px;border:0;padding:0;background:none}
+.ed h2{margin:14px 0 4px;color:var(--c1)}.hint{font-size:.85rem;opacity:.75}
+</style></head>
+<body>
+<button id="mu" aria-label="Music on/off">🎵</button>
+<div id="app"></div>
+<script id="cfg" type="application/json"></script>
+<script>
+/* STARTER WORDS: emoji | word | phonetics (IPA). Use the #edit screen to change words, photos, audio, colors. */
+var CATS=[
+["Fruits","🍎","🍎|apple|ˈæp.əl;🍌|banana|bəˈnɑː.nə;🍊|orange|ˈɒr.ɪndʒ;🍇|grape|ɡreɪp;🍓|strawberry|ˈstrɔː.bər.i;🍉|watermelon|ˈwɔː.təˌmel.ən;🍍|pineapple|ˈpaɪnˌæp.əl;🥭|mango|ˈmæŋ.ɡəʊ;🍋|lemon|ˈlem.ən;🍑|peach|piːtʃ"],
+["Food","🍞","🍞|bread|bred;🍚|rice|raɪs;🥚|egg|eɡ;🥛|milk|mɪlk;🧀|cheese|tʃiːz;🍕|pizza|ˈpiːt.sə;🍔|hamburger|ˈhæm.bɜː.ɡər;🍝|spaghetti|spəˈɡet.i;🍰|cake|keɪk;🍦|ice cream|ˌaɪs ˈkriːm"],
+["Vegetables","🥕","🥕|carrot|ˈkær.ət;🍅|tomato|təˈmɑː.təʊ;🥔|potato|pəˈteɪ.təʊ;🌽|corn|kɔːn;🥦|broccoli|ˈbrɒk.əl.i;🧅|onion|ˈʌn.jən;🥒|cucumber|ˈkjuː.kʌm.bər;🍆|eggplant|ˈeɡ.plɑːnt;🌶️|chili|ˈtʃɪl.i;🧄|garlic|ˈɡɑː.lɪk"],
+["Pet Animals","🐶","🐶|dog|dɒɡ;🐱|cat|kæt;🐰|rabbit|ˈræb.ɪt;🐹|hamster|ˈhæm.stər;🐦|bird|bɜːd;🐟|fish|fɪʃ;🐢|turtle|ˈtɜː.təl;🐭|mouse|maʊs;🦜|parrot|ˈpær.ət;🐍|snake|sneɪk"],
+["Sea Animals","🐬","🐬|dolphin|ˈdɒl.fɪn;🐳|whale|weɪl;🦈|shark|ʃɑːk;🐙|octopus|ˈɒk.tə.pəs;🦀|crab|kræb;🐠|clownfish|ˈklaʊn.fɪʃ;🦑|squid|skwɪd;🦞|lobster|ˈlɒb.stər;🦭|seal|siːl;🦐|shrimp|ʃrɪmp"],
+["Farm Animals","🐄","🐄|cow|kaʊ;🐖|pig|pɪɡ;🐔|chicken|ˈtʃɪk.ɪn;🐑|sheep|ʃiːp;🐐|goat|ɡəʊt;🐴|horse|hɔːs;🦆|duck|dʌk;🦃|turkey|ˈtɜː.ki;🐓|rooster|ˈruː.stər;🐂|bull|bʊl"],
+["Insects","🐝","🐝|bee|biː;🦋|butterfly|ˈbʌt.ə.flaɪ;🐜|ant|ænt;🐞|ladybug|ˈleɪ.di.bʌɡ;🦗|cricket|ˈkrɪk.ɪt;🪲|beetle|ˈbiː.təl;🦟|mosquito|məˈskiː.təʊ;🐛|caterpillar|ˈkæt.ə.pɪl.ər;🪰|fly|flaɪ;🪳|cockroach|ˈkɒk.rəʊtʃ"]];
+var MASS="rice milk bread cheese spaghetti corn".split(" "),KEY="vocab-game-draft-v1",PR=["🎉 Great job!","🌟 Awesome!","👏 Super!","💯 Perfect!","🥳 Yay!"];
+var canEdit=/(^|[#&])edit/.test(location.hash),A=document.getElementById("app"),cfg,cat=0,mode="",Q=[],qi=0,sc=0,fi=0,wr=false,ec=0,cs={},bl=[],bp=0,fl={},G2=[],cur;
+function build(){return{title:"Vocabulary Fun",credit:"Kru Kristel",logo:"",colors:["#7c4dff","#ffb703","#2ec4b6"],cats:CATS.map(function(c){return{n:c[0],e:c[1],w:c[2].split(";").map(function(s){var p=s.split("|");return{e:p[0],w:p[1],p:p[2],i:"",a:""}})}})}}
+try{var raw=document.getElementById("cfg").textContent.trim();cfg=raw?JSON.parse(raw):build()}catch(e){cfg=build()}
+if(canEdit){try{var sv=localStorage.getItem(KEY);if(sv)cfg=JSON.parse(sv)}catch(e){}}
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function shuffle(a){for(var k=a.length-1;k>0;k--){var j=Math.floor(Math.random()*(k+1)),t=a[k];a[k]=a[j];a[j]=t}return a}
+function ink(h){var n=parseInt(h.slice(1),16);return(.299*(n>>16)+.587*(n>>8&255)+.114*(n&255))>160?"#222":"#fff"}
+function theme(){var s=document.documentElement.style;cfg.colors.forEach(function(c,k){s.setProperty("--c"+(k+1),c);s.setProperty("--i"+(k+1),ink(c))});document.title=cfg.title}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(cfg))}catch(e){alert("Browser storage is full. Please click 'Download my game' now to keep your work.")}}
+function S(h){A.innerHTML=h;window.scrollTo(0,0)}
+function W(){return cfg.cats[cat].w}
+function pic(w){return w.i?'<img src="'+w.i+'" alt="'+esc(w.w)+'">':'<span class="emo">'+esc(w.e)+'</span>'}
+function art(w){var x=w.toLowerCase();return MASS.indexOf(x)>-1?"":/^[aeiou]/.test(x)?"an ":"a "}
+function full(w){return"It is "+art(w.w)+w.w+"."}
+function msg(t){var m=document.getElementById("m");if(m)m.textContent=t}
+function pr(){return PR[Math.floor(Math.random()*PR.length)]}
+/* audio */
+var mu={on:true,t:0,s:0,c:null},curA;
+function ac(){try{if(!mu.c)mu.c=new(window.AudioContext||window.webkitAudioContext)();if(mu.c.state=="suspended")mu.c.resume();return mu.c}catch(e){return null}}
+function tone(f,d,v,ty){var c=ac();if(!c)return;var o=c.createOscillator(),g=c.createGain();o.type=ty;o.frequency.value=f;g.gain.setValueAtTime(v,c.currentTime);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+d);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+d)}
+var MEL=[0,2,4,7,9,7,4,2,0,4,7,12,9,7,4,2,2,4,7,9,12,9,7,4,0,2,4,2,0,-3,0,-999],BASS=[0,-3,-5,-3];
+function tick(){var n=MEL[mu.s%32];if(n>-100)tone(261.63*Math.pow(2,n/12),.4,.04,"triangle");if(mu.s%8==0)tone(130.81*Math.pow(2,BASS[(mu.s/8|0)%4]/12),1.2,.05,"sine");mu.s++}
+function music(on){clearInterval(mu.t);if(on){ac();mu.t=setInterval(tick,300)}document.getElementById("mu").textContent=on?"🎵":"🔇"}
+document.getElementById("mu").onclick=function(){mu.on=!mu.on;music(mu.on)};
+document.addEventListener("click",function(){if(mu.on)music(true)},{once:true});
+function sfx(ok){if(ok){tone(660,.12,.15,"sine");setTimeout(function(){tone(880,.25,.15,"sine")},110)}else tone(180,.25,.12,"sawtooth")}
+function say(t,w){try{if(curA)curA.pause()}catch(e){}
+  if(w&&w.a){try{curA=new Audio(w.a);curA.play();return}catch(e){}}
+  try{var u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=.75;u.pitch=1.15;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+/* screens */
+function head(){return'<div class="hd">'+(cfg.logo?'<img src="'+cfg.logo+'" alt="">':'')+'<h1>'+esc(cfg.title)+'</h1><p class="cr">'+esc(cfg.credit)+'</p></div>'}
+function home(){mode="";
+  S(head()+'<p class="q" style="text-align:center">1. Choose a topic</p><div class="cats">'+cfg.cats.map(function(c,k){return'<button class="cat s'+(k%3)+(k==cat?' on':'')+'" data-a="cat" data-v="'+k+'"><span>'+esc(c.e)+'</span>'+esc(c.n)+'</button>'}).join("")+'</div><p class="q" style="text-align:center">2. Choose an activity</p><div class="modes"><button class="btn" data-a="mode" data-v="card">📖 Flash Cards</button><button class="btn" data-a="mode" data-v="g1">🔊 Listen &amp; Pick the Picture</button><button class="btn" data-a="mode" data-v="g2">🔤 Spelling: Missing Letters</button><button class="btn" data-a="mode" data-v="g3">🗣️ Speak &amp; Match</button>'+(canEdit?'<button class="btn alt" data-a="edit">✏️ Teacher: Edit game</button>':'')+'</div>')}
+function begin(){if(mode=="card"){fi=0;card();return}Q=shuffle(W().map(function(_,k){return k})).slice(0,10);qi=0;sc=0;round()}
+function bar(){return'<div class="top"><button class="btn sm alt" data-a="home">🏠</button><span>'+(qi+1)+' / '+Q.length+'</span><span>⭐ '+sc+'</span></div><div class="pg"><i style="width:'+(qi/Q.length*100)+'%"></i></div>'}
+function card(){var w=W()[fi];cs={t:w.w,w:w};
+  S('<div class="top"><button class="btn sm alt" data-a="home">🏠</button><span>'+esc(cfg.cats[cat].n)+' '+(fi+1)+' / '+W().length+'</span><span></span></div><div class="card" data-a="say">'+pic(w)+'<div class="wd">'+esc(w.w)+'</div><div class="ip">/'+esc(w.p)+'/</div><p class="sent">'+esc(full(w))+'</p><button class="btn" data-a="say">🔊 Hear it</button></div><div class="nav"><button class="btn" data-a="prev">◀ Back</button><button class="btn" data-a="next">Next ▶</button></div>');
+  setTimeout(function(){say(w.w,w)},250)}
+function round(){if(qi>=Q.length)return end();wr=false;({g1:g1,g2:g2,g3:g3})[mode]()}
+function choices(k){var o=[];W().forEach(function(_,j){if(j!=k)o.push(j)});return shuffle([k].concat(shuffle(o).slice(0,3)))}
+function grid(k){return'<div class="grid2">'+choices(k).map(function(j){return'<button class="pic" data-a="pick" data-v="'+j+'">'+pic(W()[j])+'</button>'}).join("")+'</div><div id="m"></div>'}
+function g1(){var w=W()[Q[qi]];cs={t:w.w,w:w};S(bar()+'<div class="card"><p class="q">Listen and tap the picture!</p><button class="btn pulse" data-a="say">🔊 Listen</button></div>'+grid(Q[qi]));setTimeout(function(){say(w.w,w)},300)}
+function g3(){var w=W()[Q[qi]];cs={t:full(w),w:null};S(bar()+'<div class="card"><p class="q">1️⃣ Listen 🔊 &nbsp; 2️⃣ Say it 🗣️ &nbsp; 3️⃣ Tap the picture 👆</p><p class="sent" id="s">It is '+art(w.w)+'____.</p><button class="btn pulse" data-a="say">🔊 Listen</button></div>'+grid(Q[qi]));setTimeout(function(){say(cs.t)},300)}
+function g2(){var w=W()[Q[qi]],ch=w.w.toLowerCase().split(""),cand=[];ch.forEach(function(c,k){if(k>0&&/[a-z]/.test(c))cand.push(k)});
+  bl=shuffle(cand).slice(0,ch.length>=7?2:1).sort(function(a,b){return a-b});bp=0;fl={};G2=ch;cs={t:w.w,w:w};d2();setTimeout(function(){say(w.w,w)},300)}
+function d2(){var w=W()[Q[qi]],c=bl[bp],ok=G2[c],k4=[ok];while(k4.length<4){var l="abcdefghijklmnopqrstuvwxyz"[Math.floor(Math.random()*26)];if(k4.indexOf(l)<0)k4.push(l)}shuffle(k4);
+  S(bar()+'<div class="card">'+pic(w)+'<div class="ip">/'+esc(w.p)+'/</div><div class="ltr">'+G2.map(function(ch,k){return ch==" "?'<i></i>':bl.indexOf(k)>-1?'<b class="bx'+(k==c?' cur':'')+'">'+(fl[k]||"")+'</b>':'<b>'+esc(ch)+'</b>'}).join("")+'</div><button class="btn sm" data-a="say">🔊</button></div>'+(bp<bl.length?'<div class="keys">'+k4.map(function(l){return'<button class="key" data-a="key" data-v="'+l+'">'+l+'</button>'}).join("")+'</div>':'')+'<div id="m"></div>')}
+function end(){var p=sc/Q.length,s=p>=.9?3:p>=.6?2:1;S(head()+'<div class="card"><div class="stars">'+"⭐".repeat(s)+'</div><div class="wd">'+sc+' / '+Q.length+'</div><p class="q">'+(s==3?"Super! You are a star! 🌈":s==2?"Great work! 👍":"Good try! Play again! 💪")+'</p></div><div class="nav"><button class="btn" data-a="again">🔁 Again</button><button class="btn alt" data-a="home">🏠 Home</button></div>');sfx(1)}
+function next(){qi++;round()}
+A.onclick=function(e){var b=e.target.closest("[data-a]");if(!b)return;var a=b.dataset.a,v=b.dataset.v;
+  if(a=="cat"){cat=+v;home()}else if(a=="mode"){mode=v;begin()}else if(a=="home")home();else if(a=="again")begin();
+  else if(a=="say")say(cs.t,cs.w);
+  else if(a=="prev"){fi=(fi+W().length-1)%W().length;card()}else if(a=="next"){fi=(fi+1)%W().length;card()}
+  else if(a=="pick"){if(+v==Q[qi]){if(!wr)sc++;sfx(1);msg(pr());Array.prototype.forEach.call(A.querySelectorAll(".pic"),function(x){x.disabled=true});b.style.opacity=1;b.style.borderColor="#2ecc71";
+      if(mode=="g3"){var w=W()[Q[qi]];document.getElementById("s").textContent=full(w);setTimeout(function(){say(full(w))},500)}setTimeout(next,mode=="g3"?2800:1400)}
+    else{wr=true;sfx(0);b.disabled=true;b.classList.add("shake");msg("Try again! 💪")}}
+  else if(a=="key"){var c=bl[bp];if(v==G2[c]){fl[c]=v;bp++;sfx(1);d2();if(bp>=bl.length){if(!wr)sc++;var w2=W()[Q[qi]];say(w2.w,w2);msg(pr());setTimeout(next,1700)}}else{wr=true;sfx(0);b.disabled=true;b.classList.add("shake")}}
+  else if(a=="edit")edit();
+  else if(a=="add"){cfg.cats[ec].w.push({e:"⭐",w:"word",p:"",i:"",a:""});persist();edit()}
+  else if(a=="del"){cfg.cats[ec].w.splice(+v,1);persist();edit()}
+  else if(a=="rmaud"){cfg.cats[ec].w[+v].a="";persist();edit()}else if(a=="rmimg"){cfg.cats[ec].w[+v].i="";persist();edit()}
+  else if(a=="rmlogo"){cfg.logo="";persist();edit()}
+  else if(a=="reset"){if(confirm("Reset everything to the starter words?")){cfg=build();theme();persist();edit()}}
+  else if(a=="dl")dl()};
+/* teacher editor (open this page with #edit at the end of the link) */
+function rd(f,cb){var r=new FileReader();r.onload=function(){cb(r.result)};r.readAsDataURL(f)}
+function shrink(f,ty,m,cb){rd(f,function(d){var im=new Image();im.onload=function(){var r=Math.min(1,m/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*r;c.height=im.height*r;var x=c.getContext("2d");if(ty!="image/png"){x.fillStyle="#fff";x.fillRect(0,0,c.width,c.height)}x.drawImage(im,0,0,c.width,c.height);cb(c.toDataURL(ty,.82))};im.src=d})}
+function edit(){var ws=cfg.cats[ec].w;
+  S('<div class="ed"><div class="top"><button class="btn sm alt" data-a="home">⬅ Back to game</button></div><h1>✏️ Teacher editor</h1><p class="hint">Edits save in this browser as a draft. Press “Download my game” to get the final file for your website.</p>'+
+  '<h2>Branding</h2><div class="f"><input type="text" data-f="title" data-k="c" value="'+esc(cfg.title)+'"><input type="text" data-f="credit" data-k="c" value="'+esc(cfg.credit)+'"></div>'+
+  '<div class="f" style="align-items:center">Colors: '+cfg.colors.map(function(c,k){return'<input type="color" data-f="'+k+'" data-k="x" value="'+c+'">'}).join("")+'<label class="btn sm alt">🖼 Logo<input type="file" accept="image/*" data-u="logo" hidden></label>'+(cfg.logo?'<button class="btn sm alt" data-a="rmlogo">✖</button>':'')+'</div>'+
+  '<h2>Words, photos &amp; audio</h2><div class="f"><select data-ec="1">'+cfg.cats.map(function(c,k){return'<option value="'+k+'"'+(k==ec?' selected':'')+'>'+esc(c.e+' '+c.n)+'</option>'}).join("")+'</select></div>'+
+  ws.map(function(w,k){return'<div class="row"><label class="th">'+pic(w)+'<input type="file" accept="image/*" data-u="img" data-k="'+k+'" hidden></label><div><div class="f"><input type="text" data-f="e" data-k="'+k+'" value="'+esc(w.e)+'" style="flex:0 0 3.6rem"><input type="text" data-f="w" data-k="'+k+'" value="'+esc(w.w)+'"><input type="text" data-f="p" data-k="'+k+'" value="'+esc(w.p)+'"></div><div class="f"><label class="btn sm alt">🎤 '+(w.a?'Change audio ✓':'Audio')+'<input type="file" accept="audio/*" data-u="aud" data-k="'+k+'" hidden></label>'+(w.a?'<button class="btn sm alt" data-a="rmaud" data-v="'+k+'">✖ audio</button>':'')+(w.i?'<button class="btn sm alt" data-a="rmimg" data-v="'+k+'">✖ photo</button>':'')+'<button class="btn sm alt" data-a="del" data-v="'+k+'">🗑</button></div></div></div>'}).join("")+
+  '<div class="f"><button class="btn alt" data-a="add">➕ Add word</button></div><p class="hint">Tap the small picture to upload your photo. Without an uploaded audio, the device voice reads the word. Keep audio clips short (under 500 KB).</p><div class="modes"><button class="btn" data-a="dl">💾 Download my game (HTML)</button><button class="btn alt" data-a="reset">↩ Reset to starter words</button></div></div>')}
+A.oninput=function(e){var t=e.target,f=t.dataset.f;if(f===undefined)return;var k=t.dataset.k;if(k=="c")cfg[f]=t.value;else if(k=="x"){cfg.colors[+f]=t.value;theme()}else cfg.cats[ec].w[+k][f]=t.value};
+A.onchange=function(e){var t=e.target;
+  if(t.dataset.ec!==undefined){ec=+t.value;return edit()}
+  if(t.type=="file"){var f=t.files[0],u=t.dataset.u,k=+t.dataset.k;if(!f)return;
+    if(u=="aud"){if(f.size>500000)return alert("Audio is too big. Please use a short clip under 500 KB.");rd(f,function(d){cfg.cats[ec].w[k].a=d;persist();edit()})}
+    else shrink(f,u=="logo"?"image/png":"image/jpeg",u=="logo"?200:260,function(d){if(u=="logo")cfg.logo=d;else cfg.cats[ec].w[k].i=d;persist();edit()});return}
+  persist()};
+function dl(){var c=document.documentElement.cloneNode(true);c.querySelector("#cfg").textContent=JSON.stringify(cfg).replace(/</g,"\\u003c");c.querySelector("#app").innerHTML="";
+  var a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["<!doctype html>\n"+c.outerHTML],{type:"text/html"}));a.download="vocabulary-game.html";a.click()}
+theme();home();
+</script></body></html>
